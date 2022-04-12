@@ -11,17 +11,18 @@ pub contract FTRegistry {
     // Mapping of {Type Identifier : FT Info Struct}
     access(contract) var fungibleTokenList : {String : FTInfo}
 
+    // Mapping of {Alias : Type Identifier}
     access(contract) var aliasMap : {String : String}
 
     /* Struct */
     pub struct FTInfo {
-        pub(set) var alias : String
-        pub(set) var type : Type
-        pub(set) var typeIdentifier : String
-        pub(set) var icon : String?
-        pub(set) var receiverPath : PublicPath
-        pub(set) var balancePath : PublicPath
-        pub(set) var vaultPath : StoragePath
+        pub let alias : String
+        pub let type : Type
+        pub let typeIdentifier : String
+        pub let icon : String?
+        pub let receiverPath : PublicPath
+        pub let balancePath : PublicPath
+        pub let vaultPath : StoragePath
 
         init(alias : String, type: Type, typeIdentifier: String, icon: String?, receiverPath: PublicPath, balancePath: PublicPath, vaultPath: StoragePath) {
             self.alias = alias
@@ -67,7 +68,7 @@ pub contract FTRegistry {
     }
 
     access(account) fun removeFTInfo(typeIdentifier: String) : FTInfo? {
-        let info = FTRegistry.fungibleTokenList.remove(key: typeIdentifier) ?? panic("Cannot find this Fungible Token Registry.")
+        let info = FTRegistry.fungibleTokenList.remove(key: typeIdentifier) ?? panic("Cannot find this FungibleToken Registry.")
         FTRegistry.aliasMap.remove(key: info.alias)
         emit FTInfoRemoved(alias:info!.alias, typeIdentifier: info!.typeIdentifier)
         return info 

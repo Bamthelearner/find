@@ -16,6 +16,7 @@ import FindMarketDirectOfferSoft from "./FindMarketDirectOfferSoft.cdc"
 import FindMarketAuctionEscrow from "./FindMarketAuctionEscrow.cdc"
 import FindMarketAuctionSoft from "./FindMarketAuctionSoft.cdc"
 import FTRegistry from "./FTRegistry.cdc"
+import NFTRegistry from "./NFTRegistry.cdc"
 
 pub contract Admin {
 
@@ -191,7 +192,7 @@ pub contract Admin {
 		}
 
 		/// ===================================================================================
-		// Fungible Token Registry 
+		// FungibleToken Registry 
 		/// ===================================================================================
 
 		// Registry FungibleToken Information
@@ -202,6 +203,20 @@ pub contract Admin {
 		// Remove FungibleToken Information
 		pub fun removeFTInfo(typeIdentifier: String) {
 			FTRegistry.removeFTInfo(typeIdentifier: typeIdentifier)
+		}
+
+		/// ===================================================================================
+		// NonFungibleToken Registry 
+		/// ===================================================================================
+
+		// Registry NonFungibleToken Information
+		pub fun setNFTInfo(name: String, type: Type, icon: String?, providerPath: PrivatePath, publicPath: PublicPath, storagePath: StoragePath, allowedFTTypes: [Type]?, address: Address) {
+			NFTRegistry.setNFTInfo(name: name, type: type, icon: icon, providerPath: providerPath, publicPath: publicPath, storagePath: storagePath, allowedFTTypes: allowedFTTypes, address: address)
+		}
+
+		// Remove NonFungibleToken Information
+		pub fun removeNFTInfo(typeIdentifier: String) {
+			NFTRegistry.removeNFTInfo(typeIdentifier: typeIdentifier)
 		}
 
 		//TODO: set that primary cut has been paid

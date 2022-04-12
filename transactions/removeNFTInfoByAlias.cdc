@@ -1,7 +1,7 @@
 import Admin from "../contracts/Admin.cdc"
-import FTRegistry from "../contracts/FTRegistry.cdc"
+import NFTRegistry from "../contracts/NFTRegistry.cdc"
 
-transaction(typeIdentifier: String) {
+transaction(name: String) {
 
     let adminRef : &Admin.AdminProxy
 
@@ -11,8 +11,9 @@ transaction(typeIdentifier: String) {
     }
 
     execute{
-
-        self.adminRef.removeFTInfo(typeIdentifier: typeIdentifier) 
-       
+        if let typeIdentifier = NFTRegistry.getTypeIdentifier(name: name) {
+           self.adminRef.removeNFTInfo(typeIdentifier: typeIdentifier) 
+        }
+        
     }
 }

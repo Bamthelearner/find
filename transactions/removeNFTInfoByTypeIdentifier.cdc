@@ -1,5 +1,5 @@
 import Admin from "../contracts/Admin.cdc"
-import FTRegistry from "../contracts/FTRegistry.cdc"
+import NFTRegistry from "../contracts/NFTRegistry.cdc"
 
 transaction(typeIdentifier: String) {
 
@@ -12,7 +12,7 @@ transaction(typeIdentifier: String) {
 
     execute{
 
-        self.adminRef.removeFTInfo(typeIdentifier: typeIdentifier) 
+        self.adminRef.removeNFTInfo(typeIdentifier: typeIdentifier) 
        
     }
 }

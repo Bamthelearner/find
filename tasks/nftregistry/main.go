@@ -22,43 +22,43 @@ func main() {
 		Args(o.Arguments().Account("find")).
 		RunPrintEventsFull()
 
-	//Set up Fungible Token Registry
-	o.TransactionFromFile("setFTInfo_flow").
+	//Set up NonFungibleToken Registry
+	o.TransactionFromFile("setNFTInfo_Dandy").
 		SignProposeAndPayAs("find").
 		Args(o.Arguments()).
 		RunPrintEventsFull()
 	
 	// get Info by Alias
-	o.ScriptFromFile("getFTInfoByAlias").
-		Args(o.Arguments().String("Flow")).
+	o.ScriptFromFile("getNFTInfoByAlias").
+		Args(o.Arguments().String("Dandy")).
 		Run()
 
 	// get Info by TypeIdentifier
-	o.ScriptFromFile("getFTInfoByTypeIdentifier").
-		Args(o.Arguments().String("A.0ae53cb6e3f42a79.FlowToken.Vault")).
+	o.ScriptFromFile("getNFTInfoByTypeIdentifier").
+		Args(o.Arguments().String("A.f8d6e0586b0a20c7.Dandy.Collection")).
 		Run()
 
 	// get All Info
-	o.ScriptFromFile("getFTInfoAll").
+	o.ScriptFromFile("getNFTInfoAll").
 		Args(o.Arguments()).
 		Run()
 
-	//Remove Fungible Token Registry By Alias
-	o.TransactionFromFile("removeFTInfoByAlias").
+	//Remove NonFungibleToken Registry By Alias
+	o.TransactionFromFile("removeNFTInfoByAlias").
 		SignProposeAndPayAs("find").
-		Args(o.Arguments().String("Flow")).
+		Args(o.Arguments().String("Dandy")).
 		RunPrintEventsFull()
 
-	//Set up Fungible Token Registry Again (for testing out delete)
-	o.TransactionFromFile("setFTInfo_flow").
+	//Set up NonFungibleToken Registry Again (for testing out delete)
+	o.TransactionFromFile("setNFTInfo_Dandy").
 		SignProposeAndPayAs("find").
 		Args(o.Arguments()).
 		RunPrintEventsFull()
 
-	//Remove Fungible Token Registry By Type Identifier
-	o.TransactionFromFile("removeFTInfoByTypeIdentifier").
+	//Remove NonFungibleToken Registry By Type Identifier
+	o.TransactionFromFile("removeNFTInfoByTypeIdentifier").
 		SignProposeAndPayAs("find").
-		Args(o.Arguments().String("A.0ae53cb6e3f42a79.FlowToken.Vault")).
+		Args(o.Arguments().String("A.f8d6e0586b0a20c7.Dandy.Collection")).
 		RunPrintEventsFull()
 
 
